@@ -21,13 +21,13 @@ export default {
     dialog: false,
     drawer: null,
     items: [
-      { icon: "all_inbox", text: "Pacotes", route: "" },
-      { icon: "assignment", text: "Orçamentos", route: "" },
-      { icon: "location_on", text: "Países", route: "" },
-      { icon: "school", text: "Instituições", route: "" },
-      { icon: "supervised_user_circle", text: "Clientes", route: "" },
-      { icon: "shopping_cart", text: "Vendas", route: "" },
-      { icon: "assessment", text: "Relatórios", route: "" }
+      { icon: "all_inbox", text: "Pacotes", route: "/" },
+      { icon: "assignment", text: "Orçamentos", route: "orcamentos" },
+      { icon: "location_on", text: "Países", route: "paises" },
+      { icon: "school", text: "Instituições", route: "instituicoes" },
+      { icon: "supervised_user_circle", text: "Clientes", route: "clientes" },
+      { icon: "shopping_cart", text: "Vendas", route: "vendas" },
+      { icon: "assessment", text: "Relatórios", route: "relatorios" }
     ]
   })
 }

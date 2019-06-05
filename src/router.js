@@ -1,6 +1,5 @@
 import Vue from "vue"
 import Router from "vue-router"
-// import Main from "@/app/main/Index"
 
 Vue.use(Router)
 
@@ -21,8 +20,29 @@ export default new Router({
   routes: [
     route("/login", "app/login/Index", "Login", "Login"),
     route("/", "app/default/Index", "Default", "Default", [
-      route("", "app/pacote/Index", "Pacotes", "Pacotes"),
-      route("/paises", "app/pais/Index", "Países", "Países")
+      route("", "app/pacotes/Index", "Pacotes", "Pacotes"),
+      route("/orcamentos", "app/orcamentos/Index", "Orçamentos", "Orçamentos"),
+      route("/pacote", "app/pacote/Index", "Pacote", "Pacote"),
+      route("/paises", "app/paises/Index", "Países", "Países"),
+      route(
+        "/instituicoes",
+        "app/instituicoes/Index",
+        "Instituições",
+        "Instituições"
+      ),
+      route("/clientes", "app/clientes/Index", "Clientes", "Clientes"),
+      route("/vendas", "app/vendas/Index", "Vendas", "Vendas"),
+      route("/orcamento", "app/orcamento/Index", "Orçamento", "Orçamento"),
+      route("/pais", "app/pais/Index", "País", "País"),
+      route(
+        "/instituicao",
+        "app/instituicao/Index",
+        "Instituição",
+        "Instituição"
+      ),
+      route("/cliente", "app/cliente/Index", "Cliente", "Cliente"),
+      route("/relatorios", "app/relatorios/Index", "Relatórios", "Relatórios"),
+      route("/venda", "app/venda/Index", "Venda", "Venda")
     ])
     // { path: "", component: Main }
   ]

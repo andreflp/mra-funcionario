@@ -1,12 +1,12 @@
 <template>
   <v-layout wrap mg-top style="margin-left: 70px;">
     <v-flex xs7>
-      <h2>País</h2>
+      <h2>Venda</h2>
       <v-autocomplete
-        v-model="form.pais"
-        :error-messages="errors.collect('país')"
-        label="País"
-        data-vv-name="país"
+        v-model="form.cliente"
+        :error-messages="errors.collect('cliente')"
+        label="Cliente"
+        data-vv-name="cliente"
         :items="paises"
         item-text="title"
         item-value="id"
@@ -15,16 +15,17 @@
     </v-flex>
     <v-flex xs7>
       <v-autocomplete
-        v-model="form.idiomas"
-        :error-messages="errors.collect('idiomas')"
-        label="Idiomas"
-        data-vv-name="idiomas"
-        :items="tipos"
+        v-model="form.pacote"
+        :error-messages="errors.collect('pacote')"
+        label="Pacote"
+        data-vv-name="pacote"
+        :items="paises"
         item-text="title"
         item-value="id"
         required
       ></v-autocomplete>
     </v-flex>
+
     <v-flex xs7>
       <v-btn color="#CD5350" dark>Enviar</v-btn>
       <v-btn color="#CD5350" dark>Limpar</v-btn>
@@ -40,10 +41,16 @@ export default {
 
   data: () => ({
     form: {
+      nome: "",
       pais: "",
-      idiomas: ""
+      instituicao: "",
+      tipo: "",
+      preco: "",
+      periodo: "",
+      observacoes: ""
     }
   })
 }
 </script>
+
 

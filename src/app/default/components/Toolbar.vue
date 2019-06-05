@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar :clipped-left="$vuetify.breakpoint.lgAndUp" color="light-blue accent-4" dark app fixed>
+  <v-toolbar :clipped-left="$vuetify.breakpoint.lgAndUp" color="#CD5350" dark app fixed>
     <v-toolbar-title style="width: 300px" class="ml-0 pl-3">
       <span class="hidden-sm-and-down">MRA</span>
     </v-toolbar-title>

@@ -2,32 +2,11 @@
   <v-layout wrap mg-top style="margin-left: 70px;">
     <v-flex xs7>
       <h2>Pacote</h2>
-      <v-text-field
-        v-model="form.nome"
-        :error-messages="errors.collect('nome')"
-        label="Nome"
-        data-vv-name="nome"
-        required
-      ></v-text-field>
-    </v-flex>
-    <v-flex xs7>
       <v-autocomplete
         v-model="form.pais"
         :error-messages="errors.collect('país')"
         label="País"
         data-vv-name="país"
-        :items="paises"
-        item-text="title"
-        item-value="id"
-        required
-      ></v-autocomplete>
-    </v-flex>
-    <v-flex xs7>
-      <v-autocomplete
-        v-model="form.instituicao"
-        :error-messages="errors.collect('instituição')"
-        label="Instituição"
-        data-vv-name="instituição"
         :items="paises"
         item-text="title"
         item-value="id"
@@ -61,20 +40,8 @@
         :error-messages="errors.collect('período')"
         label="Período"
         data-vv-name="período"
-        requiredhide
-      ></v-text-field>
-    </v-flex>
-    <v-flex xs7>
-      <v-text-field
-        v-model="form.observacoes"
-        :error-messages="errors.collect('observações')"
-        label="Observações"
-        data-vv-name="observações"
         required
       ></v-text-field>
-    </v-flex>
-    <v-flex xs7>
-      <UploadFile/>
     </v-flex>
     <v-flex xs7>
       <v-btn color="#CD5350" dark>Enviar</v-btn>
@@ -84,28 +51,91 @@
 </template>
 
 <script>
-import UploadFile from "./components/UploadFile"
 export default {
-  components: {
-    UploadFile
-  },
-
   $_veeValidate: {
     validator: "new"
   },
 
+  props: {
+    value: {
+      type: [Array, String]
+    },
+    accept: {
+      type: String,
+      default: "*"
+    },
+    label: {
+      type: String,
+      default: "Escolha a imagem"
+    },
+    required: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    multiple: {
+      type: Boolean, // not yet possible because of data
+      default: false
+    }
+  },
+
   data: () => ({
     form: {
-      nome: "",
       pais: "",
-      instituicao: "",
       tipo: "",
       preco: "",
-      periodo: "",
-      observacoes: ""
+      periodo: ""
+    },
+    filename: ""
+  }),
+
+  watch: {
+    value(v) {
+      this.filename = v
     }
-  })
+  },
+  mounted() {
+    this.filename = this.value
+  },
+
+  methods: {
+    getFormData(files) {
+      const data = new FormData()
+      ;[...files].forEach(file => {
+        data.append("data", file, file.name) // currently only one file at a time
+      })
+      return data
+    },
+    onFocus() {
+      if (!this.disabled) {
+        this.$refs.fileInput.click()
+      }
+    },
+    onFileChange($event) {
+      const files = $event.target.files || $event.dataTransfer.files
+      const form = this.getFormData(files)
+      if (files) {
+        if (files.length > 0) {
+          this.filename = [...files].map(file => file.name).join(", ")
+        } else {
+          this.filename = null
+        }
+      } else {
+        this.filename = $event.target.value.split("\\").pop()
+      }
+      this.$emit("input", this.filename)
+      this.$emit("formData", form)
+    }
+  }
 }
 </script>
 
-
+<style scoped>
+input[type="file"] {
+  position: absolute;
+  left: -99999px;
+}
+</style>
