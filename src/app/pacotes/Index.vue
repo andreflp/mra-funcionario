@@ -1,7 +1,7 @@
 <template>
   <div>
-    <v-layout justify-center mg-top>
-      <v-flex xs11>
+    <v-layout justify-center>
+      <v-flex xs11 mg-top>
         <DataTable title="Pacotes" :headers="headers" :items="orcamentos"/>
       </v-flex>
     </v-layout>
@@ -25,30 +25,26 @@ export default {
       },
       { text: "Tipo Intercâmbio", value: "tipo" },
       { text: "Período", value: "periodo" },
-      { text: "Preço", value: "preco" },
-      { text: "Situação", value: "situacao" }
+      { text: "Preço", value: "preco" }
     ],
     orcamentos: [
       {
         pais: "Estados Unidos",
         tipo: "Trabalho",
         periodo: "6 Mêses",
-        preco: "R$ 6.999,90",
-        situacao: "Pendente"
+        preco: "R$ 6.999,90"
       },
       {
         pais: "Inglaterra",
         tipo: "Estudos",
         periodo: "5 Mêses",
-        preco: "R$ 7.500,00",
-        situacao: "Finalizado"
+        preco: "R$ 7.500,00"
       },
       {
         pais: "Irlanda",
         tipo: "Negócios",
         periodo: "6 Mêses",
-        preco: "R$ 4.750,00",
-        situacao: "Pendente"
+        preco: "R$ 4.750,00"
       }
     ]
   })

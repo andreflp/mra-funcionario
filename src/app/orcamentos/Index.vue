@@ -1,8 +1,7 @@
 <template>
   <div>
-    <BtnAdicionar/>
     <v-layout justify-center>
-      <v-flex xs11 style="margin-top: 20px;">
+      <v-flex xs11 mg-top>
         <DataTable title="Orçamentos" :headers="headers" :items="orcamentos"/>
       </v-flex>
     </v-layout>
@@ -11,11 +10,9 @@
 
 <script>
 import DataTable from "@/app/default/components/DataTable"
-import BtnAdicionar from "@/app/default/components/BtnAdicionar"
 export default {
   components: {
-    DataTable,
-    BtnAdicionar
+    DataTable
   },
 
   data: () => ({

@@ -1,8 +1,7 @@
 <template>
   <div>
-    <BtnAdicionar/>
     <v-layout justify-center>
-      <v-flex xs11 style="margin-top: 20px;">
+      <v-flex xs11 mg-top>
         <DataTable title="Instituições" :headers="headers" :items="orcamentos"/>
       </v-flex>
     </v-layout>
@@ -11,47 +10,32 @@
 
 <script>
 import DataTable from "@/app/default/components/DataTable"
-import BtnAdicionar from "@/app/default/components/BtnAdicionar"
 export default {
   components: {
-    DataTable,
-    BtnAdicionar
+    DataTable
   },
 
   data: () => ({
     headers: [
-      {
-        text: "País",
-        align: "left",
-        sortable: false,
-        value: "pais"
-      },
-      { text: "Tipo Intercâmbio", value: "tipo" },
-      { text: "Período", value: "periodo" },
-      { text: "Preço", value: "preco" },
-      { text: "Situação", value: "situacao" }
+      { text: "Instituição", value: "instituicao" },
+      { text: "Endereço", value: "endereco" },
+      { text: "País", value: "pais" }
     ],
     orcamentos: [
       {
         pais: "Estados Unidos",
-        tipo: "Trabalho",
-        periodo: "6 Mêses",
-        preco: "R$ 6.999,90",
-        situacao: "Pendente"
+        instituicao: "Universidade Harvard",
+        endereco: "Cambridge, MA 02138"
       },
       {
-        pais: "Inglaterra",
-        tipo: "Estudos",
-        periodo: "5 Mêses",
-        preco: "R$ 7.500,00",
-        situacao: "Finalizado"
+        pais: "Estados Unidos",
+        instituicao: "Universidade Yale",
+        endereco: "New Haven, CT 06520"
       },
       {
-        pais: "Irlanda",
-        tipo: "Negócios",
-        periodo: "6 Mêses",
-        preco: "R$ 4.750,00",
-        situacao: "Pendente"
+        pais: "Inglaterra, Reino Unido",
+        instituicao: "Universidade Oxford",
+        endereco: "Oxford OX1 2JD"
       }
     ]
   })

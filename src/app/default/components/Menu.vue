@@ -1,13 +1,25 @@
 <template>
-  <v-navigation-drawer v-model="drawer" :clipped="$vuetify.breakpoint.lgAndUp" fixed app>
+  <v-navigation-drawer v-model="drawer" :clipped="$vuetify.breakpoint.lgAndUp" app>
     <v-list dense>
-      <template v-for="item in items">
-        <v-list-tile :key="item.text" :to="item.route">
-          <v-list-tile-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
+      <v-list-group v-for="item in items" :key="item.text">
+        <template v-slot:activator>
+          <v-list-tile>
             <v-list-tile-title>{{ item.text }}</v-list-tile-title>
+          </v-list-tile>
+        </template>
+        <v-list-tile :to="item.list">
+          <v-icon>list</v-icon>
+          <v-list-tile-title style="margin-left: 10px">Lista</v-list-tile-title>
+        </v-list-tile>
+        <v-list-tile :to="item.new">
+          <v-icon>add</v-icon>
+          <v-list-tile-title style="margin-left: 10px;">Novo</v-list-tile-title>
+        </v-list-tile>
+      </v-list-group>
+      <template>
+        <v-list-tile to="relatorios">
+          <v-list-tile-content>
+            <v-list-tile-title>Relatório</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
       </template>
@@ -19,16 +31,36 @@
 export default {
   data: () => ({
     dialog: false,
-    drawer: null,
+    drawer: true,
     items: [
-      { icon: "all_inbox", text: "Pacotes", route: "/" },
-      { icon: "assignment", text: "Orçamentos", route: "orcamentos" },
-      { icon: "location_on", text: "Países", route: "paises" },
-      { icon: "school", text: "Instituições", route: "instituicoes" },
-      { icon: "supervised_user_circle", text: "Clientes", route: "clientes" },
-      { icon: "shopping_cart", text: "Vendas", route: "vendas" },
-      { icon: "assessment", text: "Relatórios", route: "relatorios" }
+      { icon: "all_inbox", text: "Pacotes", list: "/", new: "pacote" },
+      {
+        icon: "assignment",
+        text: "Orçamentos",
+        list: "orcamentos",
+        new: "pacote"
+      },
+      { icon: "location_on", text: "Países", list: "paises", new: "pais" },
+      {
+        icon: "school",
+        text: "Instituições",
+        list: "instituicoes",
+        new: "instituicao"
+      },
+      {
+        icon: "supervised_user_circle",
+        text: "Clientes",
+        list: "clientes",
+        new: "cliente"
+      },
+      { icon: "shopping_cart", text: "Vendas", list: "vendas", new: "pacote" }
     ]
-  })
+  }),
+
+  created() {
+    this.$root.$on("updateDrawer", () => {
+      this.drawer = !this.drawer
+    })
+  }
 }
 </script>

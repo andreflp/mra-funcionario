@@ -1,7 +1,7 @@
 <template>
   <v-layout wrap mg-top style="margin-left: 70px;">
     <v-flex xs7>
-      <h2>Pacote</h2>
+      <h2>Orçamento</h2>
       <v-autocomplete
         v-model="form.pais"
         :error-messages="errors.collect('país')"
@@ -56,32 +56,6 @@ export default {
     validator: "new"
   },
 
-  props: {
-    value: {
-      type: [Array, String]
-    },
-    accept: {
-      type: String,
-      default: "*"
-    },
-    label: {
-      type: String,
-      default: "Escolha a imagem"
-    },
-    required: {
-      type: Boolean,
-      default: false
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    multiple: {
-      type: Boolean, // not yet possible because of data
-      default: false
-    }
-  },
-
   data: () => ({
     form: {
       pais: "",
@@ -90,52 +64,6 @@ export default {
       periodo: ""
     },
     filename: ""
-  }),
-
-  watch: {
-    value(v) {
-      this.filename = v
-    }
-  },
-  mounted() {
-    this.filename = this.value
-  },
-
-  methods: {
-    getFormData(files) {
-      const data = new FormData()
-      ;[...files].forEach(file => {
-        data.append("data", file, file.name) // currently only one file at a time
-      })
-      return data
-    },
-    onFocus() {
-      if (!this.disabled) {
-        this.$refs.fileInput.click()
-      }
-    },
-    onFileChange($event) {
-      const files = $event.target.files || $event.dataTransfer.files
-      const form = this.getFormData(files)
-      if (files) {
-        if (files.length > 0) {
-          this.filename = [...files].map(file => file.name).join(", ")
-        } else {
-          this.filename = null
-        }
-      } else {
-        this.filename = $event.target.value.split("\\").pop()
-      }
-      this.$emit("input", this.filename)
-      this.$emit("formData", form)
-    }
-  }
+  })
 }
 </script>
-
-<style scoped>
-input[type="file"] {
-  position: absolute;
-  left: -99999px;
-}
-</style>

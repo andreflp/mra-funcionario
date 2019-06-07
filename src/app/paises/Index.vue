@@ -1,13 +1,16 @@
 <template>
-  <v-layout justify-center>
-    <v-flex xs11 mg-top>
-      <DataTable title="Países" :headers="headers" :items="orcamentos"/>
-    </v-flex>
-  </v-layout>
+  <div>
+    <v-layout justify-center>
+      <v-flex xs11 mg-top>
+        <DataTable title="Países" :headers="headers" :items="paises"/>
+      </v-flex>
+    </v-layout>
+  </div>
 </template>
 
 <script>
 import DataTable from "@/app/default/components/DataTable"
+
 export default {
   components: {
     DataTable
@@ -15,39 +18,17 @@ export default {
 
   data: () => ({
     headers: [
-      {
-        text: "País",
-        align: "left",
-        sortable: false,
-        value: "pais"
-      },
-      { text: "Tipo Intercâmbio", value: "tipo" },
-      { text: "Período", value: "periodo" },
-      { text: "Preço", value: "preco" },
-      { text: "Situação", value: "situacao" }
+      { text: "País", value: "pais" },
+      { text: "Línguas", value: "linguas" }
     ],
-    orcamentos: [
-      {
-        pais: "Estados Unidos",
-        tipo: "Trabalho",
-        periodo: "6 Mêses",
-        preco: "R$ 6.999,90",
-        situacao: "Pendente"
-      },
-      {
-        pais: "Inglaterra",
-        tipo: "Estudos",
-        periodo: "5 Mêses",
-        preco: "R$ 7.500,00",
-        situacao: "Finalizado"
-      },
-      {
-        pais: "Irlanda",
-        tipo: "Negócios",
-        periodo: "6 Mêses",
-        preco: "R$ 4.750,00",
-        situacao: "Pendente"
-      }
+    paises: [
+      { pais: "Alemanha", linguas: "Alemão" },
+      { pais: "Canadá", linguas: "Inglês, Francês" },
+      { pais: "Espanha", linguas: "Espanhol" },
+      { pais: "Estados Unidos", linguas: "Inglês" },
+      { pais: "Inglaterra", linguas: "Inglês" },
+      { pais: "Irlanda", linguas: "Inglês, Irlandês" },
+      { pais: "Itália", linguas: "Italiano" }
     ]
   })
 }

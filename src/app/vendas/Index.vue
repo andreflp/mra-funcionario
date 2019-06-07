@@ -1,9 +1,11 @@
 <template>
-  <v-layout justify-center>
-    <v-flex xs11 mg-top>
-      <DataTable title="Vendas" :headers="headers" :items="orcamentos"/>
-    </v-flex>
-  </v-layout>
+  <div>
+    <v-layout justify-center>
+      <v-flex xs11 mg-top>
+        <DataTable title="Vendas" :headers="headers" :items="orcamentos"/>
+      </v-flex>
+    </v-layout>
+  </div>
 </template>
 
 <script>
