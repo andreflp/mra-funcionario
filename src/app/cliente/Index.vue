@@ -55,14 +55,7 @@
           :disabled="disabled"
           ref="fileTextField"
         ></v-text-field>
-        <input
-          type="file"
-          :accept="accept"
-          :multiple="false"
-          :disabled="disabled"
-          ref="fileInput"
-          @change="onFileChange"
-        >
+        <input type="file" :accept="accept" :multiple="false" :disabled="disabled" ref="fileInput">
       </div>
     </v-flex>
     <v-flex xs7>
