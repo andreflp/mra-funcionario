@@ -24,6 +24,7 @@ export default {
       { text: "Tipo Intercâmbio", value: "tipo" },
       { text: "Período", value: "periodo" },
       { text: "Preço", value: "preco" },
+      { text: "Cliente", value: "cliente" },
       { text: "Situação", value: "situacao" }
     ],
     orcamentos: [
@@ -33,6 +34,7 @@ export default {
         tipo: "Trabalho",
         periodo: "6 Mêses",
         preco: "R$ 6.999,90",
+        cliente: "Bruno de Souza",
         situacao: "Pendente",
         route: "orcamento"
       },
@@ -42,6 +44,7 @@ export default {
         tipo: "Estudos",
         periodo: "5 Mêses",
         preco: "R$ 7.500,00",
+        cliente: "José da Silva",
         situacao: "Finalizado",
         route: "orcamento"
       },
@@ -51,6 +54,7 @@ export default {
         tipo: "Negócios",
         periodo: "6 Mêses",
         preco: "R$ 4.750,00",
+        cliente: "Maria Aparecida",
         situacao: "Pendente",
         route: "orcamento"
       }

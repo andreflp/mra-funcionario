@@ -2,7 +2,7 @@
   <div>
     <v-layout justify-center>
       <v-flex xs11 mg-top>
-        <DataTable title="Vendas" :headers="headers" :items="orcamentos"/>
+        <DataTable title="Vendas" :headers="headers" :items="vendas"/>
       </v-flex>
     </v-layout>
   </div>
@@ -17,37 +17,24 @@ export default {
 
   data: () => ({
     headers: [
-      {
-        text: "País",
-        align: "left",
-        sortable: false,
-        value: "pais"
-      },
-      { text: "Tipo Intercâmbio", value: "tipo" },
-      { text: "Período", value: "periodo" },
-      { text: "Preço", value: "preco" },
+      { text: "Pacote", value: "pacote" },
+      { text: "Cliente", value: "cliente" },
       { text: "Situação", value: "situacao" }
     ],
-    orcamentos: [
+    vendas: [
       {
-        pais: "Estados Unidos",
-        tipo: "Trabalho",
-        periodo: "6 Mêses",
-        preco: "R$ 6.999,90",
-        situacao: "Pendente"
+        pacote: "Estados Unidos",
+        cliente: "Bruna Santos",
+        situacao: "Enviado"
       },
       {
-        pais: "Inglaterra",
-        tipo: "Estudos",
-        periodo: "5 Mêses",
-        preco: "R$ 7.500,00",
-        situacao: "Finalizado"
+        pacote: "Japão",
+        cliente: "José da Silva",
+        situacao: "Enviado"
       },
       {
-        pais: "Irlanda",
-        tipo: "Negócios",
-        periodo: "6 Mêses",
-        preco: "R$ 4.750,00",
+        pacote: "Irlanda",
+        cliente: "Maria Aparecida",
         situacao: "Pendente"
       }
     ]

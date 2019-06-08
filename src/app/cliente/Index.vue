@@ -1,156 +1,103 @@
 <template>
-  <v-layout wrap mg-top style="margin-left: 70px;">
+  <v-layout wrap row mg-top style="margin-left: 70px;">
     <v-flex xs7>
-      <h2>Pacote</h2>
-      <v-autocomplete
-        v-model="form.pais"
-        :error-messages="errors.collect('país')"
-        label="País"
-        data-vv-name="país"
-        :items="paises"
-        item-text="title"
-        item-value="id"
-        required
-      ></v-autocomplete>
-    </v-flex>
-    <v-flex xs7>
-      <v-autocomplete
-        v-model="form.tipo"
-        :error-messages="errors.collect('tipo de intêrcambio')"
-        label="Tipo de Intercâmbio"
-        data-vv-name="tipo de intercâmbio"
-        :items="tipos"
-        item-text="title"
-        item-value="id"
-        required
-      ></v-autocomplete>
-    </v-flex>
-    <v-flex xs7>
+      <h2>Cliente</h2>
       <v-text-field
-        v-model="form.preço"
-        :error-messages="errors.collect('preço')"
-        label="Preço"
-        data-vv-name="preço"
+        label="Nome"
+        v-model="form.nome"
+        v-validate="'required'"
+        :error-messages="errors.collect('nome')"
+        data-vv-name="nome"
         required
       ></v-text-field>
     </v-flex>
     <v-flex xs7>
       <v-text-field
-        v-model="form.período"
-        :error-messages="errors.collect('período')"
-        label="Período"
-        data-vv-name="período"
+        label="Sobrenome"
+        v-model="form.sobrenome"
+        v-validate="'required'"
+        :error-messages="errors.collect('sobrenome')"
+        data-vv-name="sobrenome"
         required
       ></v-text-field>
     </v-flex>
     <v-flex xs7>
-      <div>
-        <v-text-field
-          prepend-icon="attach_file"
-          single-line
-          v-model="filename"
-          :label="label"
-          :required="required"
-          @click.native="onFocus"
-          :disabled="disabled"
-          ref="fileTextField"
-        ></v-text-field>
-        <input type="file" :accept="accept" :multiple="false" :disabled="disabled" ref="fileInput">
-      </div>
+      <v-text-field
+        label="CPF"
+        v-model="form.cpf"
+        v-validate="'required'"
+        :error-messages="errors.collect('cpf')"
+        :mask="masks.cpf"
+        data-vv-name="cpf"
+        required
+      ></v-text-field>
     </v-flex>
     <v-flex xs7>
-      <v-btn color="#CD5350">Enviar</v-btn>
-      <v-btn color="#CD5350">Limpar</v-btn>
+      <v-text-field
+        label="E-mail"
+        v-model="form.email"
+        v-validate="'required|email'"
+        :error-messages="errors.collect('email')"
+        data-vv-name="email"
+        required
+      ></v-text-field>
+    </v-flex>
+    <v-flex xs7>
+      <v-text-field
+        label="Confirmação de E-mail"
+        v-model="form.emailConfirm"
+        v-validate="'required|email'"
+        :error-messages="errors.collect('confirmação')"
+        data-vv-name="confirmação"
+        required
+      ></v-text-field>
+    </v-flex>
+    <v-flex xs7>
+      <v-text-field
+        label="Data de Nascimento"
+        v-model="form.dataNasc"
+        v-validate="'required'"
+        :error-messages="errors.collect('data de nascimento')"
+        :mask="masks.date"
+        data-vv-name="data de nascimento"
+        required
+      ></v-text-field>
+    </v-flex>
+    <v-flex xs7>
+      <v-text-field
+        label="Telefone"
+        v-model="form.telefone"
+        v-validate="'required'"
+        :mask="masks.telefone"
+        :error-messages="errors.collect('telefone')"
+        data-vv-name="telefone"
+        required
+      ></v-text-field>
+    </v-flex>
+    <v-flex xs7>
+      <v-btn color="#CD5350" dark @click="submit">Enviar</v-btn>
+      <v-btn color="#CD5350" dark @click="clear">Limpar</v-btn>
     </v-flex>
   </v-layout>
 </template>
 
 <script>
+import masks from "../../utils/masks"
 export default {
   $_veeValidate: {
     validator: "new"
   },
 
-  props: {
-    value: {
-      type: [Array, String]
-    },
-    accept: {
-      type: String,
-      default: "*"
-    },
-    label: {
-      type: String,
-      default: "Escolha a imagem"
-    },
-    required: {
-      type: Boolean,
-      default: false
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    multiple: {
-      type: Boolean, // not yet possible because of data
-      default: false
-    }
-  },
-
   data: () => ({
     form: {
-      pais: "",
-      tipo: "",
-      preco: "",
-      periodo: ""
+      nome: "",
+      sobrenome: "",
+      email: "",
+      emailConfirm: "",
+      dataNasc: "",
+      telefone: ""
     },
-    filename: ""
-  }),
-
-  watch: {
-    value(v) {
-      this.filename = v
-    }
-  },
-  mounted() {
-    this.filename = this.value
-  },
-
-  methods: {
-    getFormData(files) {
-      const data = new FormData()
-      ;[...files].forEach(file => {
-        data.append("data", file, file.name) // currently only one file at a time
-      })
-      return data
-    },
-    onFocus() {
-      if (!this.disabled) {
-        this.$refs.fileInput.click()
-      }
-    },
-    onFileChange($event) {
-      const files = $event.target.files || $event.dataTransfer.files
-      const form = this.getFormData(files)
-      if (files) {
-        if (files.length > 0) {
-          this.filename = [...files].map(file => file.name).join(", ")
-        } else {
-          this.filename = null
-        }
-      } else {
-        this.filename = $event.target.value.split("\\").pop()
-      }
-      this.$emit("input", this.filename)
-      this.$emit("formData", form)
-    }
-  }
+    masks
+  })
 }
 </script>
-
-<style scoped>
-input[type="file"] {
-  position: absolute;
-  left: -99999px;
-}
-</style>

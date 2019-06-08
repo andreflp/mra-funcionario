@@ -2,47 +2,68 @@
   <v-layout wrap mg-top style="margin-left: 70px;">
     <v-flex xs7>
       <h2>Instituição</h2>
-      <v-autocomplete
+      <v-text-field
         v-model="form.instituicao"
         :error-messages="errors.collect('instituição')"
         label="Instituição"
         data-vv-name="instituição"
-        :items="paises"
-        item-text="title"
-        item-value="id"
         required
-      ></v-autocomplete>
+      ></v-text-field>
     </v-flex>
     <v-flex xs7>
-      <v-autocomplete
+      <v-text-field
+        v-model="responsavel"
+        :error-messages="errors.collect('responsável')"
+        label="Responsável"
+        data-vv-name="responsável"
+        required
+      ></v-text-field>
+    </v-flex>
+    <v-flex xs7>
+      <v-text-field
+        v-model="email"
+        :error-messages="errors.collect('email')"
+        label="E-mail"
+        data-vv-name="email"
+        required
+      ></v-text-field>
+    </v-flex>
+    <v-flex xs7>
+      <v-text-field
+        v-model="CNPJ"
+        :error-messages="errors.collect('cnpj')"
+        label="CNPJ"
+        data-vv-name="cnpj"
+        required
+      ></v-text-field>
+    </v-flex>
+    <v-flex xs7>
+      <v-text-field
         v-model="form.endereco.rua"
         :error-messages="errors.collect('rua')"
         label="Rua"
         data-vv-name="rua"
-        :items="tipos"
-        item-text="title"
-        item-value="id"
         required
-      ></v-autocomplete>
+      ></v-text-field>
     </v-flex>
     <v-flex xs7>
-      <v-autocomplete
+      <v-text-field
         v-model="form.endereco.numero"
-        :error-messages="errors.collect('endereço')"
-        label="Endereço"
-        data-vv-name="endereço"
+        :error-messages="errors.collect('número')"
+        label="Número"
+        data-vv-name="número"
         :items="tipos"
         item-text="title"
         item-value="id"
         required
-      ></v-autocomplete>
+      ></v-text-field>
     </v-flex>
     <v-flex xs7>
       <v-text-field
         v-model="form.endereco.cep"
-        :error-messages="errors.collect('cep')"
-        label="CEP"
-        data-vv-name="cep"
+        :error-messages="errors.collect('código postal')"
+        label="Código Postal"
+        data-vv-name="código postal"
         required
       ></v-text-field>
     </v-flex>
@@ -98,6 +119,8 @@ export default {
       instituicao: "",
       endereco: {
         rua: "",
+        email: "",
+        responsavel: "",
         numero: "",
         cep: "",
         bairro: "",

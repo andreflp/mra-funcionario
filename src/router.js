@@ -18,9 +18,9 @@ export default new Router({
   mode: "history",
   base: process.env.BASE_URL,
   routes: [
-    route("/login", "app/login/Index", "Login", "Login"),
+    route("/", "app/login/Index", "Login", "Login"),
     route("/", "app/default/Index", "Default", "Default", [
-      route("", "app/pacotes/Index", "Pacotes", "Pacotes"),
+      route("/pacotes", "app/pacotes/Index", "Pacotes", "Pacotes"),
       route("/orcamentos", "app/orcamentos/Index", "Orçamentos", "Orçamentos"),
       route("/pacote", "app/pacote/Index", "Pacote", "Pacote"),
       route("/paises", "app/paises/Index", "Países", "Países"),

@@ -19,7 +19,7 @@
       <template>
         <v-list-tile to="relatorios">
           <v-list-tile-content>
-            <v-list-tile-title>Relatório</v-list-tile-title>
+            <v-list-tile-title>Relatórios</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
       </template>
@@ -38,7 +38,7 @@ export default {
         icon: "assignment",
         text: "Orçamentos",
         list: "orcamentos",
-        new: "pacote"
+        new: "orcamento"
       },
       { icon: "location_on", text: "Países", list: "paises", new: "pais" },
       {
@@ -53,7 +53,7 @@ export default {
         list: "clientes",
         new: "cliente"
       },
-      { icon: "shopping_cart", text: "Vendas", list: "vendas", new: "pacote" }
+      { icon: "shopping_cart", text: "Vendas", list: "vendas", new: "venda" }
     ]
   }),
 

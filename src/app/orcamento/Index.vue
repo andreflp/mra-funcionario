@@ -2,12 +2,33 @@
   <v-layout wrap mg-top style="margin-left: 70px;">
     <v-flex xs7>
       <h2>Orçamento</h2>
+      <v-text-field
+        v-model="form.cliente"
+        :error-messages="errors.collect('cliente')"
+        label="Cliente"
+        data-vv-name="cliente"
+        required
+      ></v-text-field>
+    </v-flex>
+    <v-flex xs7>
       <v-autocomplete
         v-model="form.pais"
         :error-messages="errors.collect('país')"
         label="País"
         data-vv-name="país"
         :items="paises"
+        item-text="title"
+        item-value="id"
+        required
+      ></v-autocomplete>
+    </v-flex>
+    <v-flex xs7>
+      <v-autocomplete
+        v-model="form.instituicao"
+        :error-messages="errors.collect('instituição')"
+        label="Instituição"
+        data-vv-name="instituição"
+        :items="instituicoes"
         item-text="title"
         item-value="id"
         required
